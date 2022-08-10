@@ -47,30 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDzrf4FJWble-hewGLVIiUWt1RB1lI2vYs',
-    appId: '1:1013573145835:web:b97906006b02ee4a811aae',
-    messagingSenderId: '1013573145835',
-    projectId: 'e-office-desk-flutter',
-    authDomain: 'e-office-desk-flutter.firebaseapp.com',
-    storageBucket: 'e-office-desk-flutter.appspot.com',
-    measurementId: 'G-69Z9FKN9NK',
+    apiKey: 'AIzaSyCHoFXod2OoWICcIPmwxI633InHxzMWtqg',
+    appId: '1:878391700420:web:8cf48a5fa6687a24355291',
+    messagingSenderId: '878391700420',
+    projectId: 'eofficedeskaccurabad',
+    authDomain: 'eofficedeskaccurabad.firebaseapp.com',
+    storageBucket: 'eofficedeskaccurabad.appspot.com',
+    measurementId: 'G-JBEPQ339GV',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAHMV5A4Dz0iEJGMAoYPfu5a3odBNXttV8',
-    appId: '1:1013573145835:android:e0bfa3a6c8bf2f9c811aae',
-    messagingSenderId: '1013573145835',
-    projectId: 'e-office-desk-flutter',
-    storageBucket: 'e-office-desk-flutter.appspot.com',
+    apiKey: 'AIzaSyCFCLdekd9CT35Zpa9pxP33SOC9W5uuFho',
+    appId: '1:878391700420:android:2783eda29638e545355291',
+    messagingSenderId: '878391700420',
+    projectId: 'eofficedeskaccurabad',
+    storageBucket: 'eofficedeskaccurabad.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBDxd-MjEbcWuyncvt78M4wA_YFK5aSMcM',
-    appId: '1:1013573145835:ios:850a068a24fdabe7811aae',
-    messagingSenderId: '1013573145835',
-    projectId: 'e-office-desk-flutter',
-    storageBucket: 'e-office-desk-flutter.appspot.com',
-    iosClientId: '1013573145835-jucs16ektajtgk9b9grg4ismqgf3vspl.apps.googleusercontent.com',
-    iosBundleId: 'com.sharvayainfotech.eofficedesk',
+    apiKey: 'AIzaSyADVT2Nyjc-8z-VHoVLd7svsVvoDGm0mBU',
+    appId: '1:878391700420:ios:b8f0a1d2c9914378355291',
+    messagingSenderId: '878391700420',
+    projectId: 'eofficedeskaccurabad',
+    storageBucket: 'eofficedeskaccurabad.appspot.com',
+    iosClientId: '878391700420-7aunv6bqo50s268aldto8ocsk7rdj3f1.apps.googleusercontent.com',
+    iosBundleId: 'com.accurabad.sharvaya',
   );
 }

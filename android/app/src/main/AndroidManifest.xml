@@ -1,13 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.sharvayainfotech.eofficedesk">
+    package="com.accurabad.sharvaya">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        tools:node="remove"
+        />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
@@ -18,7 +20,7 @@
         android:icon="@drawable/sharvaya_logo"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
-        android:label="E_OfficeDesk"
+        android:label="DemoApp"
         tools:ignore="Instantiatable,MissingClass">
         <activity
             android:usesCleartextTraffic="true"
@@ -71,7 +73,7 @@
             />-->
 
       <!--  <service
-            android:name=".FireBaseMessagingServices"
+            android:name=".com.accurabad.sharvaya.FireBaseMessagingServices"
             android:exported="false">
             <intent-filter>
                 <action
@@ -87,7 +89,7 @@
             android:value="2" />
        <!-- <provider
             android:name="com.ko2ic.imagedownloader.FileProvider"
-            android:authorities="com.sharvayainfotech.eofficedesk.image_downloader.provider"
+            android:authorities="com.accurabad.sharvaya.image_downloader.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -100,10 +102,10 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <provider
+        <!--<provider
             android:authorities="com.facebook.app.FacebookContentProvider965895800985392"
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="false" />
+            android:exported="false" />-->
 
     </application>
 

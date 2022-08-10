@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soleoserp/repositories/repository.dart';
 
 part 'base_events.dart';
-
 part 'base_states.dart';
 
 class BaseBloc extends Bloc<BaseEvents, BaseStates> {
@@ -12,8 +11,7 @@ class BaseBloc extends Bloc<BaseEvents, BaseStates> {
   BaseBloc() : super(CommonInitialState());
 
   @override
-  Stream<BaseStates> mapEventToState(BaseEvents event) async* {
-  }
+  Stream<BaseStates> mapEventToState(BaseEvents event) async* {}
 
   void refreshScreen() {
     emit(CommonScreenRefreshState());

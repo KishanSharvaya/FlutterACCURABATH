@@ -13,15 +13,17 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:soleoserp/firebase_options.dart';
-import 'package:soleoserp/models/common/globals.dart';
 import 'package:soleoserp/ui/res/localizations/app_localizations.dart';
 import 'package:soleoserp/ui/res/style_resources.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Attend_Visit/Attend_Visit_Add_Edit/attend_visit_add_edit_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Attend_Visit/Attend_Visit_List/attend_visit_list_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Attend_Visit/Attend_Visit_List/attend_visit_search_screen.dart';
+import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/Followup_History/complaint_followup_history.dart';
+import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/Followup_dialog/complaint_to_followup.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/complaint_add_edit_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/complaint_pagination_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/complaint_search_screen.dart';
+import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/digital_signature.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Complaint/search_customer_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Customer/CustomerAdd_Edit/country_list_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/Customer/CustomerAdd_Edit/customer_add_edit.dart';
@@ -74,9 +76,11 @@ import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/Followup_dialog/f
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/add_inquiry_product_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/customer_search/customer_search_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_add_edit.dart';
+import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_fillter/FollowupFromInquiry.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_fillter/inquiry_filter_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_list_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_product_list_screen.dart';
+import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_product_shortcut_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/inquiry_share_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/search_inquiry_product_screen.dart';
 import 'package:soleoserp/ui/screens/DashBoard/Modules/inquiry/search_inquiry_screen.dart';
@@ -144,6 +148,7 @@ Location location = new Location();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -191,14 +196,14 @@ void checkPermissionStatus() async {
   if (Denied == true) {
     // openAppSettings();
     is_LocationService_Permission = false;
-    showCommonDialogWithSingleOption(Globals.context,
+    /*  showCommonDialogWithSingleOption(Globals.context,
         "Location permission is required , You have to click on OK button to Allow the location access !",
         positiveButtonTitle: "OK", onTapOfPositiveButton: () async {
       await openAppSettings();
       Navigator.of(Globals.context).pop();
-    });
+    });*/
 
-    // await Permission.location.request();
+    await Permission.location.request();
     // We didn't ask for permission yet or the permission has been denied before but not permanently.
   }
 
@@ -248,7 +253,7 @@ _getCurrentLocation() {
     print(e);
   });
 
-  location.onLocationChanged.listen((LocationData currentLocation) async {
+  /*location.onLocationChanged.listen((LocationData currentLocation) async {
     // Use current location
     print("OnLocationChange" +
         " Location : " +
@@ -265,7 +270,7 @@ _getCurrentLocation() {
 
     //  Address = "${first.featureName} : ${first.addressLine}";
   });
-
+*/
   // _FollowupBloc.add(LocationAddressCallEvent(LocationAddressRequest(key:"",latlng:Latitude+","+Longitude)));
 }
 
@@ -547,6 +552,25 @@ class MyApp extends StatefulWidget {
         return getMaterialPageRoute(
             FollowUpInquiryAddEditScreen(settings.arguments));
 
+      case FollowUpFromInquiryAddEditScreen.routeName:
+        return getMaterialPageRoute(
+            FollowUpFromInquiryAddEditScreen(settings.arguments));
+
+      case ProductHistoryScreen.routeName:
+        return getMaterialPageRoute(ProductHistoryScreen(settings.arguments));
+
+      case MyDigitalSignature.routeName:
+        return getMaterialPageRoute(MyDigitalSignature());
+      //MyDigitalSignature
+      //FollowUpFromInquiryAddEditScreen
+      case FollowUpFromComplaintAddEditScreen.routeName:
+        return getMaterialPageRoute(
+            FollowUpFromComplaintAddEditScreen(settings.arguments));
+      case ComplaintFollowupHistoryScreen.routeName:
+        return getMaterialPageRoute(
+            ComplaintFollowupHistoryScreen(settings.arguments));
+
+      //FollowUpFromComplaintAddEditScreen
       default:
         return null;
     }

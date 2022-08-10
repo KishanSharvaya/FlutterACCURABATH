@@ -1,4 +1,4 @@
-/*package com.sharvayainfotech.eofficedesk
+package com.accurabad.sharvaya/*package com.sharvayainfotech.eofficedesk
 
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry
@@ -32,9 +32,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.sharvayainfotech.eofficedesk.MainActivity
-import com.sharvayainfotech.eofficedesk.NotificationActivity
-import com.sharvayainfotech.eofficedesk.R
 import io.flutter.embedding.android.FlutterActivity
 import java.io.File
 import java.util.*

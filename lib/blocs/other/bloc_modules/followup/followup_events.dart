@@ -1,6 +1,5 @@
 part of 'followup_bloc.dart';
 
-
 @immutable
 abstract class FollowupEvents {}
 
@@ -8,7 +7,7 @@ abstract class FollowupEvents {}
 class FollowupListCallEvent extends FollowupEvents {
   final int pageNo;
   final FollowupListApiRequest followupListApiRequest;
-  FollowupListCallEvent(this.pageNo,this.followupListApiRequest);
+  FollowupListCallEvent(this.pageNo, this.followupListApiRequest);
 }
 
 class SearchFollowupListByNameCallEvent extends FollowupEvents {
@@ -17,17 +16,11 @@ class SearchFollowupListByNameCallEvent extends FollowupEvents {
   SearchFollowupListByNameCallEvent(this.request);
 }
 
-
-
 class SearchFollowupCustomerListByNameCallEvent extends FollowupEvents {
   final CustomerLabelValueRequest request;
 
   SearchFollowupCustomerListByNameCallEvent(this.request);
 }
-
-
-
-
 
 class FollowupInquiryNoListByNameCallEvent extends FollowupEvents {
   final FollowerInquiryNoListRequest followerInquiryNoListRequest;
@@ -40,7 +33,8 @@ class FollowupSaveByNameCallEvent extends FollowupEvents {
   final BuildContext context;
   final FollowupSaveApiRequest followupSaveApiRequest;
   final String Msg;
-  FollowupSaveByNameCallEvent(this.Msg,this.context,this.pkID,this.followupSaveApiRequest);
+  FollowupSaveByNameCallEvent(
+      this.Msg, this.context, this.pkID, this.followupSaveApiRequest);
 }
 
 class QuickFollowupSaveByNameCallEvent extends FollowupEvents {
@@ -48,49 +42,45 @@ class QuickFollowupSaveByNameCallEvent extends FollowupEvents {
   final BuildContext context;
   final FollowupSaveApiRequest followupSaveApiRequest;
   final String Msg;
-  QuickFollowupSaveByNameCallEvent(this.Msg,this.context,this.pkID,this.followupSaveApiRequest);
+  QuickFollowupSaveByNameCallEvent(
+      this.Msg, this.context, this.pkID, this.followupSaveApiRequest);
 }
-
-
 
 class FollowupDeleteByNameCallEvent extends FollowupEvents {
   final int pkID;
 
   final FollowupDeleteRequest followupDeleteRequest;
 
-  FollowupDeleteByNameCallEvent(this.pkID,this.followupDeleteRequest);
+  FollowupDeleteByNameCallEvent(this.pkID, this.followupDeleteRequest);
 }
-
 
 class QuickFollowupDeleteByNameCallEvent extends FollowupEvents {
   final int pkID;
 
   final FollowupDeleteRequest followupDeleteRequest;
 
-  QuickFollowupDeleteByNameCallEvent(this.pkID,this.followupDeleteRequest);
+  QuickFollowupDeleteByNameCallEvent(this.pkID, this.followupDeleteRequest);
 }
 
 class FollowupFilterListCallEvent extends FollowupEvents {
-
   String filtername;
   final FollowupFilterListRequest followupFilterListRequest;
 
-  FollowupFilterListCallEvent(this.filtername,this.followupFilterListRequest);
+  FollowupFilterListCallEvent(this.filtername, this.followupFilterListRequest);
 }
 
 class FollowupInquiryByCustomerIDCallEvent extends FollowupEvents {
-
   final FollowerInquiryByCustomerIDRequest followerInquiryByCustomerIDRequest;
 
   FollowupInquiryByCustomerIDCallEvent(this.followerInquiryByCustomerIDRequest);
 }
 
 class FollowupUploadImageNameCallEvent extends FollowupEvents {
-
   final File expenseImageFile;
   final FollowUpUploadImageAPIRequest expenseUploadImageAPIRequest;
 
-  FollowupUploadImageNameCallEvent(this.expenseImageFile,this.expenseUploadImageAPIRequest);
+  FollowupUploadImageNameCallEvent(
+      this.expenseImageFile, this.expenseUploadImageAPIRequest);
 }
 
 class FollowupImageDeleteCallEvent extends FollowupEvents {
@@ -98,7 +88,7 @@ class FollowupImageDeleteCallEvent extends FollowupEvents {
 
   final FollowupImageDeleteRequest followupImageDeleteRequest;
 
-  FollowupImageDeleteCallEvent(this.pkID,this.followupImageDeleteRequest);
+  FollowupImageDeleteCallEvent(this.pkID, this.followupImageDeleteRequest);
 }
 
 class FollowupTypeListByNameCallEvent extends FollowupEvents {
@@ -108,9 +98,11 @@ class FollowupTypeListByNameCallEvent extends FollowupEvents {
 }
 
 class InquiryLeadStatusTypeListByNameCallEvent extends FollowupEvents {
-  final FollowupInquiryStatusTypeListRequest followupInquiryStatusTypeListRequest;
+  final FollowupInquiryStatusTypeListRequest
+      followupInquiryStatusTypeListRequest;
 
-  InquiryLeadStatusTypeListByNameCallEvent(this.followupInquiryStatusTypeListRequest);
+  InquiryLeadStatusTypeListByNameCallEvent(
+      this.followupInquiryStatusTypeListRequest);
 }
 
 class CloserReasonTypeListByNameCallEvent extends FollowupEvents {
@@ -118,6 +110,7 @@ class CloserReasonTypeListByNameCallEvent extends FollowupEvents {
 
   CloserReasonTypeListByNameCallEvent(this.closerReasonTypeListRequest);
 }
+
 class FollowupHistoryListRequestCallEvent extends FollowupEvents {
   final FollowupHistoryListRequest followupHistoryListRequest;
 
@@ -128,4 +121,21 @@ class QuickFollowupListRequestEvent extends FollowupEvents {
   final QuickFollowupListRequest quickFollowupListRequest;
 
   QuickFollowupListRequestEvent(this.quickFollowupListRequest);
+}
+
+class ComplaintFollowupSaveRequestEvent extends FollowupEvents {
+  final int pkID;
+  final BuildContext context;
+  final ComplaintFollowupSaveRequest complaintFollowupSaveRequest;
+  final String Msg;
+
+  ComplaintFollowupSaveRequestEvent(
+      this.pkID, this.context, this.Msg, this.complaintFollowupSaveRequest);
+}
+//ComplaintFollowupHistoryListRequest
+
+class ComplaintFollowupHistoryListRequestEvent extends FollowupEvents {
+  final ComplaintFollowupHistoryListRequest complaintFollowupHistoryListRequest;
+
+  ComplaintFollowupHistoryListRequestEvent(this.complaintFollowupHistoryListRequest);
 }

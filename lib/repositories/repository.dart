@@ -2,7 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:soleoserp/models/api_requests/AttendVisit/attend_visit_delete_request.dart';
+import 'package:soleoserp/models/api_requests/Followup/complaint_followup_history_list_request.dart';
 import 'package:soleoserp/models/api_requests/InquiryShareModel.dart';
+import 'package:soleoserp/models/api_requests/Loan/loan_approval_save_request.dart';
+import 'package:soleoserp/models/api_requests/MissedPunch/missed_punch_approval_add_edit_request.dart';
+import 'package:soleoserp/models/api_requests/MissedPunch/missed_punch_approval_request.dart';
+import 'package:soleoserp/models/api_requests/SalesBill/sales_bill_search_by_id_request.dart';
+import 'package:soleoserp/models/api_requests/ToDo_request/to_do_delete_request.dart';
 import 'package:soleoserp/models/api_requests/all_employee_list_request.dart';
 import 'package:soleoserp/models/api_requests/attend_visit_list_request.dart';
 import 'package:soleoserp/models/api_requests/attend_visit_save_request.dart';
@@ -19,12 +26,18 @@ import 'package:soleoserp/models/api_requests/checking_no_to_checking_items_requ
 import 'package:soleoserp/models/api_requests/city_list_request.dart';
 import 'package:soleoserp/models/api_requests/closer_reason_list_request.dart';
 import 'package:soleoserp/models/api_requests/company_details_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_delete_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_list_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_no_list_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_save_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_search_by_Id_request.dart';
-import 'package:soleoserp/models/api_requests/complaint_search_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_delete_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_emp_follower_list_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_followup_save_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_image_delete_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_list_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_no_list_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_no_to_delete_img_video_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_save_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_search_by_Id_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_search_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/complaint_upload_image_request.dart';
+import 'package:soleoserp/models/api_requests/complaint/fetch_image_list.dart';
 import 'package:soleoserp/models/api_requests/country_list_request.dart';
 import 'package:soleoserp/models/api_requests/cust_id_inq_list_request.dart';
 import 'package:soleoserp/models/api_requests/customer_add_edit_api_request.dart';
@@ -165,6 +178,11 @@ import 'package:soleoserp/models/api_requests/to_do_save_sub_details_request.dar
 import 'package:soleoserp/models/api_requests/to_do_worklog_list_request.dart';
 import 'package:soleoserp/models/api_requests/todo_list_request.dart';
 import 'package:soleoserp/models/api_requests/transection_mode_list_request.dart';
+import 'package:soleoserp/models/api_responses/AttendVisit/attend_visit_delete_response.dart';
+import 'package:soleoserp/models/api_responses/Followup/complaint_followup_history_list_response.dart';
+import 'package:soleoserp/models/api_responses/Loan/loan_approval_save_response.dart';
+import 'package:soleoserp/models/api_responses/MissedPunch/missed_punch_add_edit_response.dart';
+import 'package:soleoserp/models/api_responses/ToDo_delete_response/to_do_delete_response.dart';
 import 'package:soleoserp/models/api_responses/all_employee_List_response.dart';
 import 'package:soleoserp/models/api_responses/attend_visit_list_response.dart';
 import 'package:soleoserp/models/api_responses/attend_visit_save_response.dart';
@@ -180,8 +198,14 @@ import 'package:soleoserp/models/api_responses/checking_no_to_checking_item_resp
 import 'package:soleoserp/models/api_responses/city_api_response.dart';
 import 'package:soleoserp/models/api_responses/closer_reason_list_response.dart';
 import 'package:soleoserp/models/api_responses/company_details_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_emp_follower_list_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_followup_save_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_image_delete_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_list_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_no_to_delete_img_video_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/complaint_upload_image_response.dart';
+import 'package:soleoserp/models/api_responses/complaint/fetch_complaint_image_list_response.dart';
 import 'package:soleoserp/models/api_responses/complaint_delete_response.dart';
-import 'package:soleoserp/models/api_responses/complaint_list_response.dart';
 import 'package:soleoserp/models/api_responses/complaint_no_list_response.dart';
 import 'package:soleoserp/models/api_responses/complaint_save_response.dart';
 import 'package:soleoserp/models/api_responses/complaint_search_response.dart';
@@ -1231,8 +1255,8 @@ class Repository {
     try {
       Map<String, dynamic> json = await apiClient.apiCallPost(
           "${ApiClient.END_POINT_MISSED_PUNCH_DELETE_BY_ID_DETAILS}/$pkID/Delete",
-          missedPunchSearchByNameRequest
-              .toJson() /*jsontemparray: customerPaginationRequest.lstcontact*/);
+          missedPunchSearchByNameRequest.toJson(),
+          showSuccessDialog: true);
       print("ToJSONRESPONSFG : " +
           missedPunchSearchByNameRequest.toJson().toString());
       BankVoucherDeleteResponse response =
@@ -1299,17 +1323,59 @@ class Repository {
     }
   }
 
+  Future<LoanApprovalSaveResponse> getLoanApprovalSAve(
+      int pkID, LoanApprovalSaveRequest loanApprovalSaveRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_LOAN_APPROVAL_SAVE_DETAILS +
+              pkID.toString() +
+              "/LoanUpd",
+          loanApprovalSaveRequest
+              .toJson() /*jsontemparray: customerPaginationRequest.lstcontact*/);
+      print("ToJSONRESPONSFG : " + loanApprovalSaveRequest.toJson().toString());
+      LoanApprovalSaveResponse response =
+          LoanApprovalSaveResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
   Future<MissedPunchApprovalListResponse> getMissedPunchApprovalList(
-      LoanApprovalListRequest employeeListRequest) async {
+      MissedPunchApprovalListRequest missedPunchApprovalListRequest) async {
     //todo due to one api bug temporary adding following key
     try {
       Map<String, dynamic> json = await apiClient.apiCallPost(
           ApiClient.END_POINT_MISSED_PUNCH_APPROVAL_LIST_DETAILS,
-          employeeListRequest
+          missedPunchApprovalListRequest
               .toJson() /*jsontemparray: customerPaginationRequest.lstcontact*/);
-      print("ToJSONRESPONSFG : " + employeeListRequest.toJson().toString());
+      print("ToJSONRESPONSFG : " +
+          missedPunchApprovalListRequest.toJson().toString());
       MissedPunchApprovalListResponse response =
           MissedPunchApprovalListResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<MissedPunchApprovalSaveResponse> getMissedPunchApprovalSave(int pkID,
+      MissedPunchApprovalSaveRequest missedPunchApprovalListRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_MISSED_PUNCH_APPROVAL_SAVE +
+              pkID.toString() +
+              "/ChangeApproval",
+          missedPunchApprovalListRequest
+              .toJson() /*jsontemparray: customerPaginationRequest.lstcontact*/);
+      print("ToJSONRESPONSFG : " +
+          missedPunchApprovalListRequest.toJson().toString());
+      MissedPunchApprovalSaveResponse response =
+          MissedPunchApprovalSaveResponse.fromJson(json);
 
       return response;
     } on ErrorResponseException catch (e) {
@@ -1413,6 +1479,25 @@ class Repository {
               .toJson() /*jsontemparray: customerPaginationRequest.lstcontact*/);
       print("ToJSONRESPONSFG : " + complaintListRequest.toJson().toString());
       AttendVisitListResponse response = AttendVisitListResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<AttendVisitDeleteResponse> getAttendVisitDeleteAPI(
+      AttendVisitDeleteRequest complaintListRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          "${ApiClient.END_POINT_ATTEND_VISIT_DELETE}",
+          complaintListRequest.toJson(),
+          showSuccessDialog:
+              true /*jsontemparray: customerPaginationRequest.lstcontact*/);
+      print("ToJSONRESPONSFG : " + complaintListRequest.toJson().toString());
+      AttendVisitDeleteResponse response =
+          AttendVisitDeleteResponse.fromJson(json);
 
       return response;
     } on ErrorResponseException catch (e) {
@@ -1801,6 +1886,20 @@ class Repository {
           ApiClient.END_POINT_SALES_BILL_SEARCH_BY_NAME, request.toJson());
       SearchSalesBillListResponse response =
           SearchSalesBillListResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<SalesBillListResponse> getSalesBillSearchDetailsAPI(
+      int CustID, SalesBillSearchByIdRequest request) async {
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_SALES_BILL_BY_ID + CustID.toString() + "/Fetch",
+          request.toJson());
+      SalesBillListResponse response = SalesBillListResponse.fromJson(json);
 
       return response;
     } on ErrorResponseException catch (e) {
@@ -2534,7 +2633,8 @@ class Repository {
           "${ApiClient.END_POINT_CUSTOMER_DELETE}/${id}/Delete", customerDeleteRequest.toJson());*/
       Map<String, dynamic> json = await apiClient.apiCallPost(
           "${ApiClient.END_POINT_EMPLOYEE_DELETE_DETAILS}/${id}/Del",
-          bankVoucherDeleteRequest.toJson());
+          bankVoucherDeleteRequest.toJson(),
+          showSuccessDialog: true);
       BankVoucherDeleteResponse response =
           BankVoucherDeleteResponse.fromJson(json);
 
@@ -2618,8 +2718,7 @@ class Repository {
           "${ApiClient.END_POINT_CUSTOMER_DELETE}/${id}/Delete", customerDeleteRequest.toJson());*/
       Map<String, dynamic> json = await apiClient.apiCallPost(
           "${ApiClient.END_POINT_ATTEND_VISIT_SAVE_DETAILS}/$pkId/Save",
-          bankVoucherDeleteRequest.toJson(),
-          showSuccessDialog: true);
+          bankVoucherDeleteRequest.toJson());
       AttendVisitSaveResponse response = AttendVisitSaveResponse.fromJson(json);
 
       return response;
@@ -2636,6 +2735,22 @@ class Repository {
       Map<String, dynamic> json = await apiClient.apiCallPost(
           ApiClient.END_POINT_TO_DO_WORK_LOG, toDoWorkLogListRequest.toJson());
       ToDoWorkLogListResponse response = ToDoWorkLogListResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ToDoDeleteResponse> todoDeleteAPI(
+      int pkId, ToDoDeleteRequest toDoDeleteRequest) async {
+    try {
+      /* await apiClient.apiCallPost(
+          "${ApiClient.END_POINT_CUSTOMER_DELETE}/${id}/Delete", customerDeleteRequest.toJson());*/
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          "${ApiClient.END_POINT_TO_DO_DELETE}/$pkId/Delete",
+          toDoDeleteRequest.toJson());
+      ToDoDeleteResponse response = ToDoDeleteResponse.fromJson(json);
 
       return response;
     } on ErrorResponseException catch (e) {
@@ -3589,6 +3704,127 @@ class Repository {
 
       TelecallerNewpaginationResponse response =
           TelecallerNewpaginationResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintImageUploadResponse> getComplaintuploadImage(
+      File imagesfiles, ComplaintUploadImageAPIRequest request) async {
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPostMultipart(
+          ApiClient.END_POINT_COMPLAINT_UPLOAD, request.toJson(),
+          imageFilesToUpload: [imagesfiles]);
+
+      print("response - ${json}");
+
+      ComplaintImageUploadResponse response =
+          ComplaintImageUploadResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<FetchComplaintImageListResponse> ComplaintImage_list_details(
+      FetchComplaintImageListRequest fetchComplaintImageListRequest) async {
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_IMAGE_LIST,
+          fetchComplaintImageListRequest.toJson());
+      FetchComplaintImageListResponse cityApiRespose =
+          FetchComplaintImageListResponse.fromJson(json);
+      return cityApiRespose;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintImageDeleteResponse> getComplaintImageDeleteApi(
+      int pkID, ComplaintImageDeleteRequest expenseTypeAPIRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_IMAGE_DELETE +
+              pkID.toString() +
+              "/DeleteImage",
+          expenseTypeAPIRequest.toJson());
+      ComplaintImageDeleteResponse response =
+          ComplaintImageDeleteResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintFollowupSaveResponse> getComplaintFollowupSaveAPI(int pkID,
+      ComplaintFollowupSaveRequest complaintFollowupSaveRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_SAVE_FOLLOWUP,
+          complaintFollowupSaveRequest.toJson());
+      ComplaintFollowupSaveResponse response =
+          ComplaintFollowupSaveResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintFollowupHistoryListResponse>
+      getComplaintFollowupHistoryListAPI(
+          ComplaintFollowupHistoryListRequest
+              complaintFollowupHistoryListResponse) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_FOLLOWUP_HISTORY_LIST,
+          complaintFollowupHistoryListResponse.toJson());
+      ComplaintFollowupHistoryListResponse response =
+          ComplaintFollowupHistoryListResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintNoToDeleteImageVideoResponse>
+      getComplaintNoToDeleteImageVideoAPI(
+          String complaintNo,
+          ComplaintNoToDeleteImageVideoRequest
+              complaintNoToDeleteImageVideoRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_NO_DELETE_IMG_VIDEO +
+              complaintNo +
+              "/DeleteImageByComplaintNo",
+          complaintNoToDeleteImageVideoRequest.toJson());
+      ComplaintNoToDeleteImageVideoResponse response =
+          ComplaintNoToDeleteImageVideoResponse.fromJson(json);
+
+      return response;
+    } on ErrorResponseException catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ComplaintEmpFollowerListResponse> getComplaintEmployeeFollowerAPI(
+      ComplaintEmpFollowerListRequest complaintEmpFollowerListRequest) async {
+    //todo due to one api bug temporary adding following key
+    try {
+      Map<String, dynamic> json = await apiClient.apiCallPost(
+          ApiClient.END_POINT_COMPLAINT_EMPLOYEE_LIST,
+          complaintEmpFollowerListRequest.toJson());
+      ComplaintEmpFollowerListResponse response =
+          ComplaintEmpFollowerListResponse.fromJson(json);
 
       return response;
     } on ErrorResponseException catch (e) {

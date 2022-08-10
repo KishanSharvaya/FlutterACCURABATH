@@ -1,4 +1,4 @@
-package com.sharvayainfotech.eofficedesk
+package com.accurabad.sharvaya
 
 import android.util.Log
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin

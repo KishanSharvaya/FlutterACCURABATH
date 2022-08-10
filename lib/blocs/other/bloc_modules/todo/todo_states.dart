@@ -1,6 +1,5 @@
 part of 'todo_bloc.dart';
 
-
 abstract class ToDoStates extends BaseStates {
   const ToDoStates();
 }
@@ -11,8 +10,9 @@ class ToDoInitialState extends ToDoStates {}
 class ToDoListCallResponseState extends ToDoStates {
   final ToDoListResponse response;
   final int newPage;
-  ToDoListCallResponseState(this.response,this.newPage);
+  ToDoListCallResponseState(this.response, this.newPage);
 }
+
 class TaskCategoryCallResponseState extends ToDoStates {
   final TaskCategoryResponse taskCategoryResponse;
 
@@ -31,9 +31,20 @@ class ToDoSaveSubDetailsState extends ToDoStates {
   ToDoSaveSubDetailsState(this.toDoSaveSubDetailsResponse);
 }
 
-
 class ToDoWorkLogListState extends ToDoStates {
   final ToDoWorkLogListResponse toDoWorkLogListResponse;
 
   ToDoWorkLogListState(this.toDoWorkLogListResponse);
+}
+
+class ToDoDeleteResponseState extends ToDoStates {
+  final ToDoDeleteResponse toDoDeleteResponse;
+
+  ToDoDeleteResponseState(this.toDoDeleteResponse);
+}
+
+class FollowupCustomerListByNameCallResponseState extends ToDoStates {
+  final CustomerLabelvalueRsponse response;
+
+  FollowupCustomerListByNameCallResponseState(this.response);
 }

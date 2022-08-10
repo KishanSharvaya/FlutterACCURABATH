@@ -1,10 +1,10 @@
-class ComplaintDeleteRequest {
+class ToDoDeleteRequest {
   String CompanyId;
 
-  ComplaintDeleteRequest({this.CompanyId});
+  ToDoDeleteRequest({this.CompanyId});
 
-  ComplaintDeleteRequest.fromJson(Map<String, dynamic> json) {
-    CompanyId= json['CompanyId'];
+  ToDoDeleteRequest.fromJson(Map<String, dynamic> json) {
+    CompanyId = json['CompanyId'];
   }
 
   Map<String, dynamic> toJson() {

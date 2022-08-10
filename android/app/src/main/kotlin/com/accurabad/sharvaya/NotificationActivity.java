@@ -1,4 +1,4 @@
-package com.sharvayainfotech.eofficedesk;
+package com.accurabad.sharvaya;
 
 import android.app.Activity;
 import android.app.NotificationManager;

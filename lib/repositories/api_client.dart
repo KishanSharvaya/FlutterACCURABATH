@@ -17,7 +17,7 @@ import 'error_response_exception.dart';
 class ApiClient {
   ///set apis' base url here
 
-  static const BASE_URL = 'http://208.109.14.134:83/';
+  static const BASE_URL = 'http://122.169.111.101:114/';
 
   /// General Flutter Test SerialKey = TEST-0000-SI0F-0208 / ID : admin / Pwd : Sharvaya / SiteURL : 122.169.11.101:3346
 
@@ -28,6 +28,7 @@ SharvayaNativeTEST  : [BaseURL(API)]:	http://122.169.111.101:107/ [WebURL]:http:
 SharvayaFlutterTEST : [BaseURL(API)]:	http://122.169.111.101:108/ [WebURL]:http://122.169.111.101:208/  CompanyID:4132	SerailsKey:TEST-0000-SI0F-0208
 SoleosFlutterTEST   : [BaseURL(API)]:	http://122.169.111.101:112/ [WebURL]:http://122.169.111.101:212/  CompanyID:4133	SerailsKey:TEST-0000-SOLF-0212
 DolphinFlutterTEST  : [BaseURL(API)]:	http://122.169.111.101:105/ [WebURL]:http://122.169.111.101:205/  CompanyID:4134	SerailsKey:TEST-0000-DOLF-0205
+ACCURABATHFlutterTEST   : [BaseURL(API)]:	http://122.169.111.101:114/ [WebURL]:http://122.169.111.101:314/  CompanyID:4156	SerailsKey:TEST-0000-ACBF-0213
 CartFlutterAPITEST  : [BaseURL(API)]:	http://122.169.111.101:106/ [WebURL]:http://122.169.111.101:206/  CompanyID:4135	SerailsKey:TEST-0000-CARF-0206
 
  */
@@ -110,7 +111,8 @@ CartFlutterLive     : [BaseURL(API)]:	http://208.109.14.134:86/ [WebURL]:http://
   static const END_POINT_PRODUCT_SEARCH = "Inquiry/Product/List";
   static const END_POINT_CUSTOMER_CONTACT_SAVE = "Customer/Contacts/INS_UPD";
   static const END_POINT_INQUIRY_HEADER_SAVE = "Inquiry/";
-  static const END_POINT_INQUIRY_NO_TO_PRODUCT_LIST = "Inquiry/Products/1-1000";
+  static const END_POINT_INQUIRY_NO_TO_PRODUCT_LIST =
+      "Inquiry/Products/1-100000";
   static const END_POINT_INQUIRY_NO_TO_DELETE_PRODUCT_LIST = "Inquiry/";
   static const END_POINT_CUSTOMER_ID_TO_CONTACT_DETAILS =
       "Customer/Contacts/Search";
@@ -187,6 +189,7 @@ CartFlutterLive     : [BaseURL(API)]:	http://208.109.14.134:86/ [WebURL]:http://
   static const END_POINT_LOAN_SEARCH_DETAILS = "Loan/Search";
   static const END_POINT_LOAN_DELETE_DETAILS = "Loan";
   static const END_POINT_LOAN_APPROVAL_LIST_DETAILS = "Loan/ByApprovalStatus";
+  static const END_POINT_LOAN_APPROVAL_SAVE_DETAILS = "Loan/";
 
   static const END_POINT_MISSED_PUNCH_LIST_DETAILS = "MissedPunch";
   static const END_POINT_MISSED_PUNCH_SEARCH_DETAILS = "MissedPunch/Search";
@@ -267,6 +270,19 @@ CartFlutterLive     : [BaseURL(API)]:	http://208.109.14.134:86/ [WebURL]:http://
   static const END_POINT_INQUIRY_SEARCH_BY_FILLTER = 'Inquiry/SearchList';
   static const END_POINT_TELECALLER_IMG_UPLOAD = "TeleCaller/UploadImage";
   static const END_POINT_TELECALLER_IMAGE_DELETE_BY_PK_ID = "TeleCaller/";
+  static const END_POINT_TO_DO_DELETE = "Todo";
+  static const END_POINT_ATTEND_VISIT_DELETE = "ComplaintVisit/CompaintDel";
+  static const END_POINT_SALES_BILL_BY_ID = "SalesBill/";
+  static const END_POINT_MISSED_PUNCH_APPROVAL_SAVE = "MissedPunch/";
+  static const END_POINT_COMPLAINT_UPLOAD = "Complaint/ImageUpload";
+  static const END_POINT_COMPLAINT_IMAGE_LIST = "Complaint/getdocumentlist";
+  static const END_POINT_COMPLAINT_IMAGE_DELETE = "ComplaintDoc/";
+  static const END_POINT_COMPLAINT_SAVE_FOLLOWUP = "Complaint/0/FollowUp";
+  static const END_POINT_COMPLAINT_FOLLOWUP_HISTORY_LIST =
+      "ComplaintFollowUp/1-100000";
+  static const END_POINT_COMPLAINT_NO_DELETE_IMG_VIDEO = "ComplaintDoc/";
+  static const END_POINT_COMPLAINT_EMPLOYEE_LIST =
+      "Complaint/EmployeeFollowerList";
 
   final http.Client httpClient;
 
@@ -846,11 +862,11 @@ CartFlutterLive     : [BaseURL(API)]:	http://208.109.14.134:86/ [WebURL]:http://
       case 404:
         var responseJson = json.decode(response.body);
         final message = responseJson["Message"];
-        throw NotFoundException(message.toString());
+        throw NotFoundException("Something went wrong !");
       case 500:
-        var responseJson = json.decode(response.body);
-        final message = responseJson["Message"];
-        throw ServerErrorException(message.toString());
+        //  var responseJson = json.decode(response.body);
+        // final message = responseJson["Message"];
+        throw ServerErrorException("Something went wrong !");
       default:
         throw FetchDataException(
             'Error occurred while Communication with Server with StatusCode : ${response.statusCode}');

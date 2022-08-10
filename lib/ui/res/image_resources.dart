@@ -27,3 +27,6 @@ const VISIT = "assets/images/visit.png";
 const NOIMAGE = "assets/images/custom_logo_icon/noimg.png";
 const LOCATION_ICON = "assets/images/custom_logo_icon/location_icon.png";
 const IOSBAND = "assets/images/IOSBand.png";
+const NAV_ICON = "assets/images/office_todo/nav_icon.png";
+const LADY_ICON = "assets/images/office_todo/lady.png";
+const PROGRESS = "assets/images/office_todo/progress_bar.png";

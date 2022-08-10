@@ -1,6 +1,5 @@
 part of 'followup_bloc.dart';
 
-
 abstract class FollowupStates extends BaseStates {
   const FollowupStates();
 }
@@ -11,7 +10,7 @@ class FollowupInitialState extends FollowupStates {}
 class FollowupListCallResponseState extends FollowupStates {
   final FollowupListResponse response;
   final int newPage;
-  FollowupListCallResponseState(this.response,this.newPage);
+  FollowupListCallResponseState(this.response, this.newPage);
 }
 
 class SearchFollowupListByStatusCallResponseState extends FollowupStates {
@@ -20,15 +19,11 @@ class SearchFollowupListByStatusCallResponseState extends FollowupStates {
   SearchFollowupListByStatusCallResponseState(this.response);
 }
 
-
-
 class FollowupCustomerListByNameCallResponseState extends FollowupStates {
   final CustomerLabelvalueRsponse response;
 
   FollowupCustomerListByNameCallResponseState(this.response);
 }
-
-
 
 class FollowupInquiryStatusListCallResponseState extends FollowupStates {
   final InquiryStatusListResponse inquiryStatusListResponse;
@@ -36,34 +31,37 @@ class FollowupInquiryStatusListCallResponseState extends FollowupStates {
   FollowupInquiryStatusListCallResponseState(this.inquiryStatusListResponse);
 }
 
-
-
 class FollowupInquiryNoListCallResponseState extends FollowupStates {
   final FollowupInquiryNoListResponse followupInquiryNoListResponse;
 
   FollowupInquiryNoListCallResponseState(this.followupInquiryNoListResponse);
 }
+
 class FollowupSaveCallResponseState extends FollowupStates {
   final FollowupSaveSuccessResponse followupSaveResponse;
   final BuildContext context;
-  FollowupSaveCallResponseState(this.context,this.followupSaveResponse);
+  FollowupSaveCallResponseState(this.context, this.followupSaveResponse);
 }
+
 class FollowupDeleteCallResponseState extends FollowupStates {
   final FollowupDeleteResponse followupDeleteResponse;
 
   FollowupDeleteCallResponseState(this.followupDeleteResponse);
 }
+
 class FollowupFilterListCallResponseState extends FollowupStates {
   final FollowupFilterListResponse followupFilterListResponse;
   final int newPage;
 
-  FollowupFilterListCallResponseState(this.newPage,this.followupFilterListResponse);
+  FollowupFilterListCallResponseState(
+      this.newPage, this.followupFilterListResponse);
 }
 
 class FollowupInquiryByCustomerIdCallResponseState extends FollowupStates {
   final FollowupInquiryByCustomerIDResponse followupInquiryByCustomerIDResponse;
 
-  FollowupInquiryByCustomerIdCallResponseState(this.followupInquiryByCustomerIDResponse);
+  FollowupInquiryByCustomerIdCallResponseState(
+      this.followupInquiryByCustomerIDResponse);
 }
 
 class FollowupUploadImageCallResponseState extends FollowupStates {
@@ -71,11 +69,13 @@ class FollowupUploadImageCallResponseState extends FollowupStates {
 
   FollowupUploadImageCallResponseState(this.followupImageUploadResponse);
 }
+
 class FollowupImageDeleteCallResponseState extends FollowupStates {
   final FollowupDeleteImageResponse followupDeleteImageResponse;
 
   FollowupImageDeleteCallResponseState(this.followupDeleteImageResponse);
 }
+
 class FollowupTypeListCallResponseState extends FollowupStates {
   final FollowupTypeListResponse followupTypeListResponse;
 
@@ -94,16 +94,28 @@ class CloserReasonListCallResponseState extends FollowupStates {
   CloserReasonListCallResponseState(this.closerReasonListResponse);
 }
 
-
 class FollowupHistoryListResponseState extends FollowupStates {
   final FollowupHistoryListResponse followupHistoryListResponse;
 
   FollowupHistoryListResponseState(this.followupHistoryListResponse);
 }
 
-
 class QuickFollowupListResponseState extends FollowupStates {
   final QuickFollowupListResponse quickFollowupListResponse;
 
   QuickFollowupListResponseState(this.quickFollowupListResponse);
+}
+
+class ComplaintFollowupSaveResponseState extends FollowupStates {
+  final ComplaintFollowupSaveResponse complaintFollowupSaveResponse;
+  final BuildContext context;
+
+  ComplaintFollowupSaveResponseState(
+      this.context, this.complaintFollowupSaveResponse);
+}
+//ComplaintFollowupHistoryListResponse
+class ComplaintFollowupHistoryListResponseState extends FollowupStates {
+  final ComplaintFollowupHistoryListResponse complaintFollowupHistoryListResponse;
+
+  ComplaintFollowupHistoryListResponseState(this.complaintFollowupHistoryListResponse);
 }

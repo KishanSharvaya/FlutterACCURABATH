@@ -1,4 +1,4 @@
-package com.sharvayainfotech.eofficedesk
+package com.accurabad.sharvaya
 
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry
